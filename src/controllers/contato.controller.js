@@ -6,16 +6,16 @@ const exibirFormulario = (req, res) => {
 };
 
 // Cria um novo contato
-const criarContato = (req, res) => {
+const criarContato = async (req, res) => {
   const { nome, sobrenome, email } = req.body;
-  contatoModel.criarContato(nome, sobrenome, email);
+  await contatoModel.criarContato(nome, sobrenome, email);
   res.redirect('/');
 };
 
 // Lista os contatos
-const listarContatos = (req, res) => {
-  const contatos = contatoModel.listarContatos();
-  res.render('contatos/listar', { contatos });
+const listarContatos = async (req, res) => {
+  const contatos = await contatoModel.listarContatos();
+   res.render('contatos/listar', { contatos });
 };
 
 module.exports = { exibirFormulario, criarContato, listarContatos };
